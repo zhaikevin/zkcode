@@ -78,6 +78,9 @@ public class QuorumPeerConfig {
     protected File dataLogDir;
     protected String dynamicConfigFileStr = null;
     protected String configFileStr = null;
+    /**
+     * zookeeper服务器之间或客户端与服务端之间维持心跳的间隔
+     */
     protected int tickTime = ZooKeeperServer.DEFAULT_TICK_TIME;
     protected int maxClientCnxns = 60;
     /** defaults to -1 if not set explicitly */
@@ -87,7 +90,16 @@ public class QuorumPeerConfig {
     protected boolean localSessionsEnabled = false;
     protected boolean localSessionsUpgradingEnabled = false;
 
+    /**
+     * 集群中的follower服务器(F)与leader服务器(L)之间初始连接时能容忍的最多心跳数
+     * （tickTime的数量）
+     */
     protected int initLimit;
+
+    /**
+     * 集群中的follower服务器与leader服务器之间请求和应答之间能容忍的最多心跳数
+     * （tickTime的数量）
+     */
     protected int syncLimit;
     protected int electionAlg = 3;
     protected int electionPort = 2182;
